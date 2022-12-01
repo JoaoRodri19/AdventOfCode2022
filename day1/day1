@@ -1,0 +1,40 @@
+
+def main():
+    with open('input1','r') as file:
+        data = file.read()
+    elf = data.split('\n\n')## calorias separadas
+    elf1 = [passToInt(k.split('\n')) for k in elf]
+    soma = [soma1(k) for k in elf1]
+    print(max(soma)[0]) ##ex1
+    print(topThree(soma))#ex2
+def topThree (array):
+    one = max(array)
+    array.pop(one[1])
+    two = max(array)
+    array.pop(two[1])
+    three = max(array)
+    return one[0]+two[0]+three[0]
+
+def passToInt(array):
+    res = [int(k) for k in array if k != '']
+    return res
+
+def soma1 (array):
+    soma=0
+    for k in array:
+       soma+= k
+    return soma 
+
+def max(array) :
+    max=0
+    i =0
+    indexM =0
+    for k in array:
+        if k>max:
+            max=k
+            indexM=i
+        i+=1
+    return (max,indexM)
+
+if __name__ == "__main__":
+    main()
